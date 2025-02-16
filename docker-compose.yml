@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  # Apache and PHP service
+  web:
+    build: ./php
+    container_name: php-apache-container
+    ports:
+      - "8080:80"
+    networks:
+      - my-network
+    volumes:
+      - ./www:/var/www/html
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres-container
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5432:5432"
+    networks:
+      - my-network
+    volumes:
+      - "./init_data/init.sql:/docker-entrypoint-initdb.d/init.sql"
+      - "./init_data/customers.csv:/docker-entrypoint-initdb.d/customers.csv"
+      - "./postgres/dbdata:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-development}
+
+# Define networks
+networks:
+  my-network:
