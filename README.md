@@ -1,5 +1,5 @@
 # catch_php_test
-This repo Backend code test for Catch Design.
+This repo is a backend code test for Catch Design.
 
 ### Environment
 - PHP 8
