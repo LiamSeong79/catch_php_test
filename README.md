@@ -13,6 +13,7 @@ This repo is a backend code test for Catch Design.
 - It will create `customers` table with initialised data in `developement` database.
 
 ### How to Test
+- You can send requests API via Postman or other tools once Docker is spun up.
 - This will return all records (http://localhost:8080/customers.php)
 - It requires two parameters: `limit` and `page` for pagination (http://localhost:8080/customers.php?limit=100&page=1). The data structure will be like below
 
