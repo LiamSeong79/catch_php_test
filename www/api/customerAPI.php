@@ -29,13 +29,19 @@ class CustomerAPI {
     }
 
     private function getCustomers($page, $limit) {
+        $totalRows = $this->customers->fetchCount();
+        $totalPages = ceil($totalRows / $limit);
+
+        // Prevent the page number from exceeding the total pages
+        if ($page > $totalPages && $totalPages > 0) {
+            $page = $totalPages;  // Set to the last page if the requested page exceeds total pages
+        }
+
         //calculate page offset
         $offset = ($page - 1) * $limit;
 
         // Fetch customer records with pagination
         $records = $this->customers->fetchPage($limit, $offset);
-        $totalRows = $this->customers->fetchCount();
-        $totalPages = ceil($totalRows / $limit);
         
         $data = [
             "customers" => $records, 
