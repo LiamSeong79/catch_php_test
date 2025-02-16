@@ -18,3 +18,7 @@ This repo is a backend code test for Catch Design.
 - It requires two parameters: `limit` and `page` for pagination (http://localhost:8080/customers.php?limit=100&page=1). The data structure will be like below
 
   <img width="181" alt="image" src="https://github.com/user-attachments/assets/39e5f73b-35f3-4af5-87e0-7e17ca14e6e1" />
+
+### Things to do
+- add test code
+- add Authentication
